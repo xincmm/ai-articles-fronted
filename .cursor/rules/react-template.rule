@@ -1,0 +1,42 @@
+# React 19 + Vite + Tailwind + ShadcN Template Rules
+
+description: "Rules for modern React template using React 19, Vite, Tailwind CSS v4, ShadcN UI and React Router v7"
+
+files: ["**/*.{ts,tsx,js,jsx}"]
+
+rules:
+  - When writing or modifying code, follow these guidelines:
+    - Use React 19 features and best practices
+    - Follow Vite's recommended configurations
+    - Utilize Tailwind CSS v4 utility classes for styling
+    - Implement ShadcN UI components following their design system
+    - Use React Router v7 for routing implementation
+    
+  - Code Style:
+    - Use TypeScript for type safety
+    - Prefer functional components over class components
+    - Use modern React hooks and patterns
+    - Follow ESLint and Prettier configurations
+    
+  - Project Structure:
+    - Keep components in /src/components
+    - Store routes in /src/routes
+    - Place layouts in /src/layouts
+    - Manage global states in /src/store
+    - Keep utilities in /src/utils
+    
+  - Performance:
+    - Implement code splitting where appropriate
+    - Use React.lazy() for route-based code splitting
+    - Follow Vite's optimization guidelines
+    
+  - Component Guidelines:
+    - Create reusable and modular components
+    - Use ShadcN UI components for consistent UI
+    - Implement proper prop types/interfaces
+    - Follow accessibility best practices
+
+references:
+  - "@file:package.json"
+  - "@file:vite.config.ts"
+  - "@file:tsconfig.node.json" 
