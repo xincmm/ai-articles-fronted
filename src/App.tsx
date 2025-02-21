@@ -1,10 +1,9 @@
 import { useState } from "react";
 import "./App.css";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
+import Home from "@/components/Home";
 import {
   BrowserRouter,
-  useSearchParams,
   Link,
   Route,
   Routes,
@@ -24,29 +23,29 @@ const About = () => {
     </>
   );
 };
-const Home = () => {
-  const [searchParams] = useSearchParams();
+// const Home = () => {
+//   const [searchParams] = useSearchParams();
 
-  console.log("Home");
+//   console.log("Home");
 
-  return (
-    <>
-      {searchParams.toString() !== "" ? (
-        <div>Home page with query {searchParams.toString()}...</div>
-      ) : (
-        <></>
-      )}
+//   return (
+//     <>
+//       {searchParams.toString() !== "" ? (
+//         <div>Home page with query {searchParams.toString()}...</div>
+//       ) : (
+//         <></>
+//       )}
 
-      <Link to="/about">Go to about!</Link>
-      <div className="bg-amber-500 mb-5">
-        <p className="text-white">HELLO WORLD</p>
-      </div>
-      <Badge variant="secondary">
-        React 19 + Vite + Tailwind CSS v4 + ShadCN UI + React Router v7
-      </Badge>
-    </>
-  );
-};
+//       <Link to="/about">Go to about!</Link>
+//       <div className="bg-amber-500 mb-5">
+//         <p className="text-white">HELLO WORLD</p>
+//       </div>
+//       <Badge variant="secondary">
+//         React 19 + Vite + Tailwind CSS v4 + ShadCN UI + React Router v7
+//       </Badge>
+//     </>
+//   );
+// };
 function App() {
   return (
     <>
