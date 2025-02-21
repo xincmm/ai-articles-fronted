@@ -8,6 +8,10 @@ import {
   Route,
   Routes,
 } from "react-router";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+const queryClient = new QueryClient();
+
 const About = () => {
   console.log("In about...");
   const [count, setCount] = useState(0);
@@ -48,14 +52,14 @@ const About = () => {
 // };
 function App() {
   return (
-    <>
+    <QueryClientProvider client={queryClient}>
       <BrowserRouter>
         <Routes>
           <Route index element={<Home />} />
           <Route path="about" element={<About />} />
         </Routes>
       </BrowserRouter>
-    </>
+    </QueryClientProvider>
   );
 }
 
