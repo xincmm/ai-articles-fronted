@@ -7,8 +7,8 @@ export default function Home() {
       <div className="fixed top-0 left-0 h-screen">
         <Sidebar className="w-64 border-r h-full" />
       </div>
-      <main className="ml-64 bg-background min-h-screen">
-        <div className="container mx-auto p-4">
+      <main className="ml-64 h-screen overflow-hidden">
+        <div className="h-full">
           <ArticleList />
         </div>
       </main>

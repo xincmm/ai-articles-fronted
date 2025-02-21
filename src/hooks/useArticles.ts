@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { Article } from '../types/article';
+import { FilterState } from '@/atoms/filter';
 
 interface ArticlesResponse {
   success: boolean;
@@ -8,14 +9,45 @@ interface ArticlesResponse {
   };
 }
 
-interface UseArticlesParams {
+type PartialFilterState = Partial<FilterState>;
+
+interface UseArticlesParams extends PartialFilterState {
   page?: number;
   pageSize?: number;
+  sourceId?: string | null;
 }
 
-const fetchArticles = async ({ page = 1, pageSize = 20 }: UseArticlesParams) => {
+const fetchArticles = async ({ 
+  page = 1, 
+  pageSize = 20, 
+  sourceId,
+  timeRange = 'all',
+  language = 'all',
+  sortBy = 'default',
+}: UseArticlesParams) => {
+  const params = new URLSearchParams({
+    page: page.toString(),
+    pageSize: pageSize.toString(),
+  });
+  
+  if (sourceId) {
+    params.append('sourceId', sourceId);
+  }
+
+  if (timeRange && timeRange !== 'all') {
+    params.append('timeRange', timeRange);
+  }
+
+  if (language && language !== 'all') {
+    params.append('language', language);
+  }
+
+  if (sortBy && sortBy !== 'default') {
+    params.append('sortBy', sortBy);
+  }
+
   const response = await fetch(
-    `http://localhost:3000/api/articles?page=${page}&pageSize=${pageSize}`
+    `http://localhost:3000/api/articles?${params.toString()}`
   );
   if (!response.ok) {
     throw new Error('Network response was not ok');
