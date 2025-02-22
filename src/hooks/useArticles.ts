@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { Article } from '../types/article';
 import { FilterState } from '@/atoms/filter';
+import { API_BASE_URL } from '@/config/api';
 
 interface ArticlesResponse {
   success: boolean;
@@ -47,7 +48,7 @@ const fetchArticles = async ({
   }
 
   const response = await fetch(
-    `http://localhost:3000/api/articles?${params.toString()}`
+    `${API_BASE_URL}/articles?${params.toString()}`
   );
   if (!response.ok) {
     throw new Error('Network response was not ok');

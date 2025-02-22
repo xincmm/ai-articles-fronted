@@ -9,6 +9,8 @@ import {
   Routes,
 } from "react-router";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import ArticleDetail from './pages/ArticleDetail';
+import Header from "./components/Header";
 
 const queryClient = new QueryClient();
 
@@ -27,36 +29,16 @@ const About = () => {
     </>
   );
 };
-// const Home = () => {
-//   const [searchParams] = useSearchParams();
 
-//   console.log("Home");
-
-//   return (
-//     <>
-//       {searchParams.toString() !== "" ? (
-//         <div>Home page with query {searchParams.toString()}...</div>
-//       ) : (
-//         <></>
-//       )}
-
-//       <Link to="/about">Go to about!</Link>
-//       <div className="bg-amber-500 mb-5">
-//         <p className="text-white">HELLO WORLD</p>
-//       </div>
-//       <Badge variant="secondary">
-//         React 19 + Vite + Tailwind CSS v4 + ShadCN UI + React Router v7
-//       </Badge>
-//     </>
-//   );
-// };
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
+        <Header />
         <Routes>
           <Route index element={<Home />} />
           <Route path="about" element={<About />} />
+          <Route path="article/:id" element={<ArticleDetail />} />
         </Routes>
       </BrowserRouter>
     </QueryClientProvider>

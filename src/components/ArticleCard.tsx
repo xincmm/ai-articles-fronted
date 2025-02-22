@@ -5,6 +5,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Star } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { ChevronDown, ChevronUp } from "lucide-react"
+import { Link } from 'react-router';
 
 interface ArticleCardProps {
   article: Article;
@@ -17,9 +18,9 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({ article }) => {
   const starCount = Math.floor((article.score || 0) / 20);
 
   return (
-    <Card className="overflow-hidden hover:shadow-lg transition-shadow duration-200">
-      <CardContent className="p-0">
-        <div className="flex gap-6 p-6">
+      <Card className="overflow-hidden hover:shadow-md transition-shadow duration-200">
+        <CardContent className="p-0">
+          <div className="flex gap-6 p-4">
           {article.cover && (
             <div className="relative h-48 w-48 flex-shrink-0 overflow-hidden rounded-lg">
               <img
@@ -30,10 +31,12 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({ article }) => {
             </div>
           )}
           <div className="flex flex-1 flex-col">
-            <h3 className="text-2xl font-semibold text-blue-600 hover:text-blue-700 cursor-pointer leading-tight">
-              {article.title}
-            </h3>
-            <div className="mt-3 flex items-center gap-4 text-sm text-gray-500">
+            <Link to={`/article/${article.id}`}>
+              <h3 className="text-2xl font-semibold text-blue-600 hover:text-blue-700 cursor-pointer leading-tight">
+                {article.title}
+              </h3>
+            </Link>
+            <div className="mt-3 flex items-center gap-2 text-sm text-gray-500">
               <span className="font-medium">{article.sourceName}</span>
               <span>·</span>
               <span>{article.publishDateStr}</span>
@@ -64,7 +67,10 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({ article }) => {
                 {article.summary}
               </p>
               <div 
-                onClick={() => setIsExpanded(!isExpanded)}
+                onClick={(e) => {
+                  e.preventDefault();
+                  setIsExpanded(!isExpanded);
+                }}
                 className="flex items-center gap-1 text-blue-600 hover:text-blue-700 text-sm mt-2 cursor-pointer group"
               >
                 <span>{isExpanded ? "收起" : "展开"}</span>

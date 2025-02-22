@@ -1,18 +1,18 @@
-import React from 'react';
-import { useArticles } from '../hooks/useArticles';
-import { FilterBar } from "./FilterBar"
-import { ArticleCard } from "./ArticleCard"
-import { useAtom } from 'jotai';
-import { selectedSourceIdAtom, filterAtom } from '@/atoms/filter';
+import React from "react";
+import { useArticles } from "../hooks/useArticles";
+import { FilterBar } from "./FilterBar";
+import { ArticleCard } from "./ArticleCard";
+import { useAtom } from "jotai";
+import { selectedSourceIdAtom, filterAtom } from "@/atoms/filter";
 import { Loader2 } from "lucide-react";
 
 export const ArticleList: React.FC = () => {
   const [selectedSourceId] = useAtom(selectedSourceIdAtom);
   const [filter] = useAtom(filterAtom);
-  
+
   const { data, isLoading, error } = useArticles({
     sourceId: selectedSourceId,
-    ...filter
+    ...filter,
   });
 
   const renderContent = () => {
@@ -51,9 +51,11 @@ export const ArticleList: React.FC = () => {
 
     return (
       <div className="flex-1 overflow-y-auto px-8 py-4">
-        <div className="space-y-4">
+        <div className="grid grid-cols-1 divide-gray-100">
           {data.data.dataList.map((article) => (
-            <ArticleCard key={article.id} article={article} />
+            <div key={article.id} className="py-2 first:pt-0 last:pb-0">
+              <ArticleCard article={article} />
+            </div>
           ))}
         </div>
       </div>
@@ -68,4 +70,4 @@ export const ArticleList: React.FC = () => {
       {renderContent()}
     </div>
   );
-}; 
+};

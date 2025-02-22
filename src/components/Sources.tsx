@@ -3,6 +3,7 @@ import { Source } from '@/types/article'
 import { useAtom } from 'jotai'
 import { selectedSourceIdAtom } from '@/atoms/filter'
 import clsx from 'clsx'
+import { API_BASE_URL } from '@/config/api'
 
 interface SourcesResponse {
   success: boolean
@@ -17,7 +18,7 @@ export function Sources() {
   const { isPending, error, data } = useQuery<SourcesResponse>({
     queryKey: ['sources'],
     queryFn: () =>
-      fetch('http://localhost:3000/api/sources?page=1&pageSize=1000').then((res) =>
+      fetch(`${API_BASE_URL}/sources?page=1&pageSize=1000`).then((res) =>
         res.json(),
       ),
   })
