@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query';
+import { useInfiniteQuery } from '@tanstack/react-query';
 import { Article } from '../types/article';
 import { FilterState } from '@/atoms/filter';
 import { API_BASE_URL } from '@/config/api';
@@ -7,6 +7,10 @@ interface ArticlesResponse {
   success: boolean;
   data: {
     dataList: Article[];
+    currentPage: number;
+    pageSize: number;
+    totalCount: number;
+    pageCount: number;
   };
 }
 
@@ -57,8 +61,13 @@ const fetchArticles = async ({
 };
 
 export const useArticles = (params: UseArticlesParams = {}) => {
-  return useQuery<ArticlesResponse>({
+  return useInfiniteQuery<ArticlesResponse>({
     queryKey: ['articles', params],
-    queryFn: () => fetchArticles(params),
+    queryFn: ({ pageParam = 1 }) => fetchArticles({ ...params, page: pageParam as number }),
+    getNextPageParam: (lastPage) => {
+      const { currentPage, pageCount } = lastPage.data;
+      return currentPage < pageCount ? currentPage + 1 : undefined;
+    },
+    initialPageParam: 1,
   });
 }; 

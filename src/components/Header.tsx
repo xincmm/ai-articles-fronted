@@ -8,7 +8,7 @@ const Header: React.FC = () => {
         <nav className="flex items-center justify-between">
           <Link to="/" className="flex items-center space-x-2">
             <img src="/favicon.ico" alt="Logo" className="h-8 w-8" />
-            <span className="text-xl font-bold">AI 文章助手</span>
+            <span className="text-xl font-bold">微信公众号AI总结助手</span>
           </Link>
           
           <div className="flex items-center space-x-6">

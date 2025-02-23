@@ -21,17 +21,8 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({ article }) => {
       <Card className="overflow-hidden hover:shadow-md transition-shadow duration-200">
         <CardContent className="p-0">
           <div className="flex gap-6 p-4">
-          {article.cover && (
-            <div className="relative h-48 w-48 flex-shrink-0 overflow-hidden rounded-lg">
-              <img
-                src={article.cover}
-                alt={article.title}
-                className="absolute inset-0 h-full w-full object-cover hover:scale-105 transition-transform duration-200"
-              />
-            </div>
-          )}
           <div className="flex flex-1 flex-col">
-            <Link to={`/article/${article.id}`}>
+            <Link target='_blank' to={`/article/${article.id}`}>
               <h3 className="text-2xl font-semibold text-blue-600 hover:text-blue-700 cursor-pointer leading-tight">
                 {article.title}
               </h3>

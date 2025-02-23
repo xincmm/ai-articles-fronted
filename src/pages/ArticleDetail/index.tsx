@@ -22,10 +22,10 @@ const ArticleDetail: React.FC = () => {
 
   return (
     <div className="flex h-[calc(100vh-58px)]">
-      <div className="w-[420px] overflow-y-auto p-6 border-r">
+      <div className="w-[420px] overflow-y-auto p-4 border-r">
         <article>
           <h5 className="text-2xl border-b border-gray-200 pb-3 font-bold text-gray-900 mb-4">
-            AI总结
+            智能总结
           </h5>
           
           <div className="mb-4 flex flex-wrap gap-2">
