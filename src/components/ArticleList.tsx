@@ -88,13 +88,11 @@ export const ArticleList: React.FC = () => {
     return (
       <div 
         ref={containerRef} 
-        className="flex-1 overflow-y-auto px-8 py-4"
+        className="flex-1 overflow-y-auto px-16"
       >
-        <div className="grid grid-cols-1 divide-y divide-gray-100">
+        <div className="divide-y divide-gray-200">
           {articles.map((article) => (
-            <div key={article.id} className="py-2 first:pt-0">
-              <ArticleCard article={article} />
-            </div>
+            <ArticleCard key={article.id} article={article} />
           ))}
           
           <div ref={loadMoreRef} className="h-20 flex items-center justify-center">
@@ -113,7 +111,7 @@ export const ArticleList: React.FC = () => {
 
   return (
     <div className="h-full flex flex-col">
-      <div className="bg-white sticky top-0 z-10 px-8 py-4 border-b">
+      <div className="bg-white sticky top-0 z-10 px-16 py-4 border-b">
         <FilterBar />
       </div>
       {renderContent()}

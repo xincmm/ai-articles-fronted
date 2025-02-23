@@ -52,7 +52,7 @@ export function Sources() {
           onClick={() => handleSourceClick(source.id)}
         >
           <img 
-            src={source.image} 
+            src={`${source.logo}`} 
             alt={source.name} 
             className="w-8 h-8 rounded-full object-cover"
           />

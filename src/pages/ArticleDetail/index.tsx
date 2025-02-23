@@ -1,9 +1,8 @@
 import React from 'react';
 import { useParams } from 'react-router';
 import { Badge } from "@/components/ui/badge";
-import { Star } from "lucide-react";
-import { cn } from "@/lib/utils";
 import { useArticleDetail } from '@/hooks/useArticleDetail';
+import dayjs from 'dayjs';
 
 const ArticleDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -18,7 +17,6 @@ const ArticleDetail: React.FC = () => {
   }
 
   const article = data.data;
-  const starCount = Math.floor((article.score || 0) / 20);
 
   return (
     <div className="flex h-[calc(100vh-58px)]">
@@ -31,9 +29,9 @@ const ArticleDetail: React.FC = () => {
           <div className="mb-4 flex flex-wrap gap-2">
             {article.tags?.map((tag) => (
               <Badge 
-                key={tag} 
-                variant="secondary" 
-                className="bg-blue-50 hover:bg-blue-100 text-blue-600 rounded-full px-2 py-0.5 text-xs font-medium"
+                key={tag}
+                variant="secondary"
+                className="bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-full px-3 py-0.5 text-sm font-medium transition-colors duration-200"
               >
                 {tag}
               </Badge>
@@ -43,23 +41,7 @@ const ArticleDetail: React.FC = () => {
           <div className="flex items-center gap-3 text-xs text-gray-500 mb-4">
             <span className="font-medium">{article.sourceName}</span>
             <span>·</span>
-            <span>{article.publishDateStr}</span>
-            <div className="flex items-center gap-2">
-              <span>·</span>
-              <span>AI 评分: {article.score}</span>
-              <div className="flex">
-                {[...Array(5)].map((_, i) => (
-                  <Star
-                    key={i}
-                    size={14}
-                    className={cn(
-                      "transition-colors duration-200",
-                      i < starCount ? "fill-yellow-400 text-yellow-400" : "text-gray-200"
-                    )}
-                  />
-                ))}
-              </div>
-            </div>
+            <span>{dayjs(article.publishTimeStamp).format('YYYY-MM-DD HH:mm')}</span>
           </div>
 
           <div className="prose prose-sm max-w-none">
