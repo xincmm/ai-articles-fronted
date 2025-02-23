@@ -18,6 +18,8 @@ const ArticleDetail: React.FC = () => {
 
   const article = data.data;
 
+  console.log(article);
+
   return (
     <div className="flex h-[calc(100vh-58px)]">
       <div className="w-[420px] overflow-y-auto p-4 border-r">
@@ -90,7 +92,7 @@ const ArticleDetail: React.FC = () => {
 
       <div className="flex-1 h-full">
         <iframe
-          src={`http://192.168.3.10:42885/${article.sourceId}/${id}/`}
+          src={`http://localhost:57267/${article.sourceId.id}/${id}/`}
           className="w-full h-full border-0"
           title="Article Content"
         />

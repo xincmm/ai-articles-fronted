@@ -36,7 +36,10 @@ export interface Article {
   keyQuotes?: string[];
   score?: number;
   language?: string;
-  sourceId: string;
+  sourceId: {
+    id: string;
+    wechatId?: string;
+  };
   sourceName?: string;
   createdAt?: Date;
   updatedAt?: Date;
