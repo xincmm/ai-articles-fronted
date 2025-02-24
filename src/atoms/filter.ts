@@ -1,4 +1,5 @@
 import { atom } from 'jotai'
+import { Source } from '@/types/article'
 
 export type TimeRange = 'all' | 'today' | 'week' | 'month'
 export type Language = 'all' | 'zh' | 'en'
@@ -11,6 +12,7 @@ export interface FilterState {
 }
 
 export const selectedSourceIdAtom = atom<string | null>(null)
+export const selectedSourceAtom = atom<Source | null>(null)
 
 export const filterAtom = atom<FilterState>({
   timeRange: 'all',

@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
 import { Source } from '@/types/article'
 import { useAtom } from 'jotai'
-import { selectedSourceIdAtom } from '@/atoms/filter'
+import { selectedSourceIdAtom, selectedSourceAtom } from '@/atoms/filter'
 import clsx from 'clsx'
 import { API_BASE_URL } from '@/config/api'
 
@@ -14,6 +14,7 @@ interface SourcesResponse {
 
 export function Sources() {
   const [selectedSourceId, setSelectedSourceId] = useAtom(selectedSourceIdAtom)
+  const [_, setSelectedSource] = useAtom(selectedSourceAtom)
   
   const { isPending, error, data } = useQuery<SourcesResponse>({
     queryKey: ['sources'],
@@ -28,7 +29,14 @@ export function Sources() {
   if (error) return <div className="text-red-500">发生错误: {error.message}</div>
 
   const handleSourceClick = (sourceId: string | null) => {
-    setSelectedSourceId(selectedSourceId === sourceId ? null : sourceId)
+    setSelectedSourceId(sourceId)
+    
+    if (sourceId === null) {
+      setSelectedSource(null)
+    } else {
+      const source = data?.data.dataList.find(s => s.id === sourceId) || null
+      setSelectedSource(source)
+    }
   }
 
   return (

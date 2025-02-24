@@ -113,6 +113,9 @@ export const ArticleList: React.FC = () => {
     <div className="h-full flex flex-col">
       <div className="bg-white sticky top-0 z-10 px-16 py-4 border-b">
         <FilterBar />
+        <div className="mt-2 text-sm text-gray-500">
+            共 {data?.pages[0].data.totalCount} 篇文章
+          </div>
       </div>
       {renderContent()}
     </div>

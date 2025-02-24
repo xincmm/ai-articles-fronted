@@ -92,7 +92,7 @@ const ArticleDetail: React.FC = () => {
 
       <div className="flex-1 h-full">
         <iframe
-          src={`http://localhost:57267/${article.sourceId.id}/${id}/`}
+          src={`http://localhost:57267/${article.sourceId?.id}/${id}/`}
           className="w-full h-full border-0"
           title="Article Content"
         />
